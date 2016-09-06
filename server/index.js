@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 
 /* go connect to db first then setup all routes, check to see if we're on production or not. */
-db.connect((process.env.MONGODB_URI || 'mongodb://localhost:27017/tacos'), (err) => {
+db.connect((process.env.MONGODB_URI || 'mongodb://localhost:27017/mapado'), (err) => {
   if (err) {
     console.log('Unable to connect to Mongo.')
     process.exit(1)
@@ -26,7 +26,7 @@ db.connect((process.env.MONGODB_URI || 'mongodb://localhost:27017/tacos'), (err)
     //root route
     app.get('/', (req, res) => {
       res.json({
-        'taco':'api',
+        'mapado':'api',
         'version':'1.0'
       });
     });
