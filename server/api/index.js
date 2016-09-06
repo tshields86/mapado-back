@@ -15,10 +15,11 @@ export default function(){
     });
   });
 
-  api.get('/task', (req, res) => {
+  api.get('/task/:id', (req, res) => {
     // get a single task
     console.log('Get a task');
-    collection.findOne({"_id": ObjectID(req.body._id)},(err, collection) => {
+    // console.log("req.params:", req.params);
+    collection.findOne({"_id": ObjectID(req.params.id)},(err, collection) => {
       res.json(collection)
     });
   });
@@ -35,7 +36,9 @@ export default function(){
   api.put('/task', (req, res) => {
     // edit a task
     console.log('Edit a task');
-    collection.update({"_id": ObjectID(req.body._id)}, {"name": req.body.name, "toppings": req.body.toppings}, {w:1} , (err, result) => {
+    console.log('req.body',req.body);
+    console.log('req.params',req.params);
+    collection.update({"_id": ObjectID(req.body.id)}, req.body.update, (err, result) => {
       res.json(result);
     });
 
